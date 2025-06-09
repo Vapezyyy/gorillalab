@@ -19,6 +19,7 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+
     @keyframes fadeInUp {
       0% {
         opacity: 0;
@@ -29,20 +30,13 @@
         transform: translateY(0);
       }
     }
+
     @keyframes pulse {
       0%, 100% {
         box-shadow: 0 0 8px #ff4a4a;
       }
       50% {
         box-shadow: 0 0 20px #ff4a4a;
-      }
-    }
-    @keyframes highlightItem {
-      0%, 100% {
-        color: #ccc;
-      }
-      50% {
-        color: #57e389;
       }
     }
 
@@ -58,12 +52,14 @@
       color: #ff4a4a;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.2s;
+      animation-fill-mode: forwards;
     }
     header p {
       font-size: 1.2rem;
       color: #aaa;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.4s;
+      animation-fill-mode: forwards;
     }
 
     .main-content {
@@ -73,6 +69,7 @@
       padding: 4rem;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.6s;
+      animation-fill-mode: forwards;
     }
     .description h2 {
       font-size: 2rem;
@@ -80,12 +77,14 @@
       color: #f0db4f;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.8s;
+      animation-fill-mode: forwards;
     }
     .description p {
       font-size: 1rem;
       color: #ddd;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 1s;
+      animation-fill-mode: forwards;
     }
     .hero-image {
       display: flex;
@@ -96,12 +95,14 @@
       color: #57e389;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 1.2s;
+      animation-fill-mode: forwards;
     }
 
     .features {
       padding: 2rem 4rem;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 1.4s;
+      animation-fill-mode: forwards;
     }
     .features h3 {
       font-size: 1.5rem;
@@ -109,6 +110,7 @@
       color: #57e389;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 1.6s;
+      animation-fill-mode: forwards;
     }
     .features ul {
       list-style-type: square;
@@ -117,13 +119,24 @@
     }
     .features ul li {
       margin-bottom: 0.7rem;
-      animation: highlightItem 3s ease infinite;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-fill-mode: forwards;
     }
-    .features ul li:nth-child(odd) {
-      animation-delay: 0s;
+    .features ul li:nth-child(1) {
+      animation-delay: 1.8s;
     }
-    .features ul li:nth-child(even) {
-      animation-delay: 1.5s;
+    .features ul li:nth-child(2) {
+      animation-delay: 2s;
+    }
+    .features ul li:nth-child(3) {
+      animation-delay: 2.2s;
+    }
+    .features ul li:nth-child(4) {
+      animation-delay: 2.4s;
+    }
+    .features ul li:nth-child(5) {
+      animation-delay: 2.6s;
     }
 
     .visitor-counter {
@@ -132,14 +145,16 @@
       font-size: 1.2rem;
       color: #57e389;
       animation: fadeInUp 1s ease forwards;
-      animation-delay: 1.8s;
+      animation-delay: 2.8s;
+      animation-fill-mode: forwards;
     }
 
     .cta {
       text-align: center;
       margin: 4rem 0;
       animation: fadeInUp 1s ease forwards;
-      animation-delay: 2s;
+      animation-delay: 3s;
+      animation-fill-mode: forwards;
     }
     .cta button {
       background: #ff4a4a;
@@ -165,7 +180,8 @@
       color: #888;
       font-size: 0.9rem;
       animation: fadeInUp 1s ease forwards;
-      animation-delay: 2.2s;
+      animation-delay: 3.2s;
+      animation-fill-mode: forwards;
     }
   </style>
 </head>
@@ -199,7 +215,7 @@
   </section>
 
   <section class="visitor-counter">
-    <p>We were visited by <span id="visitorCount">...</span> people!</p>
+    <p>This page was visited <span id="visitorCount">...</span> times!</p>
   </section>
 
   <section class="cta">
@@ -211,32 +227,18 @@
   </footer>
 
   <script>
-    const visitorKey = 'gorillalab-visited';
+  function updateVisitorCount() {
+    fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitorCount').textContent = data.count;
+      })
+      .catch(() => {
+        document.getElementById('visitorCount').textContent = 'an unknown number of';
+      });
+  }
 
-    async function updateVisitorCount() {
-      if(localStorage.getItem(visitorKey)) {
-        fetch('https://api.counterapi.dev/v1/gorillalab/main-page')
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById('visitorCount').textContent = data.count;
-          })
-          .catch(() => {
-            document.getElementById('visitorCount').textContent = 'an unknown number of';
-          });
-      } else {
-        fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById('visitorCount').textContent = data.count;
-            localStorage.setItem(visitorKey, 'true');
-          })
-          .catch(() => {
-            document.getElementById('visitorCount').textContent = 'an unknown number of';
-          });
-      }
-    }
-
-    updateVisitorCount();
-  </script>
+  updateVisitorCount();
+</script>
 </body>
 </html>
