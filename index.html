@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gorilla Lab - VR Sandbox Game</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Reset i podstawy */
     * {
       margin: 0;
       padding: 0;
@@ -16,35 +18,77 @@
       background: linear-gradient(135deg, #1e1f26, #34384c);
       color: #fff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    /* Animacje */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 8px #ff4a4a;
+      }
+      50% {
+        box-shadow: 0 0 20px #ff4a4a;
+      }
+    }
+    @keyframes highlightItem {
+      0%, 100% {
+        color: #ccc;
+      }
+      50% {
+        color: #57e389;
+      }
+    }
+
     header {
       background: #0f0f1a;
       padding: 2rem;
       text-align: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      animation: fadeInUp 1s ease forwards;
     }
     header h1 {
       font-size: 3rem;
       color: #ff4a4a;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.2s;
     }
     header p {
       font-size: 1.2rem;
       color: #aaa;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.4s;
     }
+
     .main-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       padding: 4rem;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.6s;
     }
     .description h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #f0db4f;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.8s;
     }
     .description p {
       font-size: 1rem;
       color: #ddd;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1s;
     }
     .hero-image {
       display: flex;
@@ -53,29 +97,52 @@
       font-size: 2.5rem;
       font-weight: bold;
       color: #57e389;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.2s;
     }
+
     .features {
       padding: 2rem 4rem;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.4s;
     }
     .features h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #57e389;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.6s;
     }
     .features ul {
       list-style-type: square;
       padding-left: 1.5rem;
       color: #ccc;
     }
+    .features ul li {
+      margin-bottom: 0.7rem;
+      animation: highlightItem 3s ease infinite;
+    }
+    .features ul li:nth-child(odd) {
+      animation-delay: 0s;
+    }
+    .features ul li:nth-child(even) {
+      animation-delay: 1.5s;
+    }
+
     .visitor-counter {
       text-align: center;
       padding: 2rem;
       font-size: 1.2rem;
       color: #57e389;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.8s;
     }
+
     .cta {
       text-align: center;
       margin: 4rem 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 2s;
     }
     .cta button {
       background: #ff4a4a;
@@ -86,16 +153,22 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s ease;
+      animation: pulse 3s ease infinite;
     }
     .cta button:hover {
       background: #e63e3e;
+      animation-play-state: paused;
+      box-shadow: 0 0 30px #e63e3e;
     }
+
     footer {
       text-align: center;
       padding: 2rem;
       background: #0f0f1a;
       color: #888;
       font-size: 0.9rem;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 2.2s;
     }
   </style>
 </head>
@@ -141,17 +214,32 @@
   </footer>
 
   <script>
-    const namespace = 'gorillalab';
-    const key = 'main-page';
+    const visitorKey = 'gorillalab-visited';
 
-    fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('visitorCount').textContent = data.count;
-    })
-    .catch(() => {
-      document.getElementById('visitorCount').textContent = 'an unknown number of';
-    });
+    async function updateVisitorCount() {
+      if(localStorage.getItem(visitorKey)) {
+        fetch('https://api.counterapi.dev/v1/gorillalab/main-page')
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById('visitorCount').textContent = data.count;
+          })
+          .catch(() => {
+            document.getElementById('visitorCount').textContent = 'an unknown number of';
+          });
+      } else {
+        fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById('visitorCount').textContent = data.count;
+            localStorage.setItem(visitorKey, 'true');
+          })
+          .catch(() => {
+            document.getElementById('visitorCount').textContent = 'an unknown number of';
+          });
+      }
+    }
+
+    updateVisitorCount();
   </script>
 </body>
 </html>
