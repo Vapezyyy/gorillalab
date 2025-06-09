@@ -37,9 +37,6 @@
       gap: 2rem;
       padding: 4rem;
     }
-    .description {
-      max-width: 600px;
-    }
     .description h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
@@ -53,11 +50,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .hero-image img {
-      max-width: 100%;
-      border-radius: 2xl;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #57e389;
     }
     .features {
       padding: 2rem 4rem;
@@ -71,6 +66,12 @@
       list-style-type: square;
       padding-left: 1.5rem;
       color: #ccc;
+    }
+    .visitor-counter {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: #57e389;
     }
     .cta {
       text-align: center;
@@ -101,42 +102,56 @@
 <body>
   <header>
     <h1>Gorilla Lab</h1>
-    <p>Immersive VR Sandbox Game with Gorilla-Style Hand Movement</p>
+    <p>Immersive VR sandbox experience with gorilla-style movement!</p>
   </header>
 
   <section class="main-content">
     <div class="description">
-      <h2>Enter the Lab, Become the Gorilla</h2>
+      <h2>Enter the Lab. Become the Gorilla.</h2>
       <p>
-        Gorilla Lab is a cutting-edge VR sandbox game where you move like a real gorilla! Climb, swing, and explore with full hand-based locomotion in a physics-driven environment. Experiment, build, and go bananas in a lab built for chaos and creativity.
+        Gorilla Lab is a groundbreaking VR sandbox game where you move like a real gorilla! Climb, swing, and explore with full arm-based locomotion. Experiment, build, and play in a lab designed for chaos and creativity.
       </p>
     </div>
     <div class="hero-image">
-      <img src="https://example.com/gorilla-lab-hero.jpg" alt="Gorilla Lab VR Game Screenshot">
+      <p>Coming Soon...</p>
     </div>
   </section>
 
   <section class="features">
     <h3>Game Features:</h3>
     <ul>
-      <li>True VR locomotion with two-hand gorilla movement</li>
+      <li>True gorilla-style movement with two-hand locomotion</li>
       <li>Interactive sandbox with dynamic physics</li>
-      <li>Multiplayer chaos & co-op gameplay</li>
-      <li>Modding support for custom content</li>
-      <li>Stylized lab environments with secrets to discover</li>
+      <li>Multiplayer and co-op modes</li>
+      <li>Mod support and user-generated content</li>
+      <li>Stylized labs full of secrets</li>
     </ul>
   </section>
 
+  <section class="visitor-counter">
+    <p>We were visited by <span id="visitorCount">...</span> people!</p>
+  </section>
+
   <section class="cta">
-    <button onclick="alert('Coming soon to Meta Quest & SteamVR!')">Wishlist Now</button>
+    <button onclick="alert('Coming soon on Meta Quest and SteamVR!')">Add to Wishlist</button>
   </section>
 
   <footer>
-    &copy; 2025 Gorilla Lab Studios. All rights reserved.
+    &copy; 2025 GalaxyVR Studios. All rights reserved.
   </footer>
 
   <script>
-    console.log('Website loaded lok');
+    const namespace = 'gorillalab';
+    const key = 'main-page';
+
+    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitorCount').textContent = data.value;
+      })
+      .catch(() => {
+        document.getElementById('visitorCount').textContent = 'an unknown number of';
+      });
   </script>
 </body>
 </html>
