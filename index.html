@@ -18,6 +18,7 @@
       color: #fff;
       line-height: 1.6;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
     a {
       text-decoration: none;
@@ -25,14 +26,8 @@
     }
 
     @keyframes fadeInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .nav {
@@ -43,8 +38,7 @@
       background: #0f0f1a;
       animation: fadeInDown 1s ease forwards;
     }
-    .nav-left,
-    .nav-right {
+    .nav-left, .nav-right {
       display: flex;
       gap: 2rem;
     }
@@ -75,41 +69,26 @@
       width: 100%;
     }
 
-    header,
-    header h1,
-    header p,
-    .main-content,
-    .description h2,
-    .description p,
-    .hero-image,
-    .features,
-    .features h3,
-    .features ul li,
-    .visitor-counter,
-    .cta,
-    footer {
+    section, header, footer {
       opacity: 0;
       transform: translateY(-20px);
+      animation: fadeInDown 1s ease forwards;
     }
 
     header {
       background: #0f0f1a;
       padding: 2rem;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 0.2s;
     }
     header h1 {
       font-size: 3rem;
       color: #ff4a4a;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 0.4s;
     }
     header p {
       font-size: 1.2rem;
       color: #aaa;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 0.6s;
     }
 
@@ -118,20 +97,17 @@
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       padding: 4rem;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 0.8s;
     }
     .description h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #f0db4f;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 1s;
     }
     .description p {
       font-size: 1rem;
       color: #ddd;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 1.2s;
     }
     .hero-image {
@@ -141,20 +117,17 @@
       font-size: 2.5rem;
       font-weight: bold;
       color: #57e389;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 1.4s;
     }
 
     .features {
       padding: 2rem 4rem;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 1.6s;
     }
     .features h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #57e389;
-      animation: fadeInDown 1s ease forwards;
       animation-delay: 1.8s;
     }
     .features ul {
@@ -164,30 +137,21 @@
     }
     .features ul li {
       margin-bottom: 0.7rem;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInDown 1s ease forwards;
+      animation-delay: 2s;
     }
-    .features ul li:nth-child(1) { animation-delay: 2s; }
-    .features ul li:nth-child(2) { animation-delay: 2.2s; }
-    .features ul li:nth-child(3) { animation-delay: 2.4s; }
-    .features ul li:nth-child(4) { animation-delay: 2.6s; }
-    .features ul li:nth-child(5) { animation-delay: 2.8s; }
 
     .visitor-counter {
       text-align: center;
       padding: 2rem;
       font-size: 1.2rem;
       color: #57e389;
-      animation: fadeInDown 1s ease forwards;
-      animation-delay: 3s;
+      animation-delay: 2.4s;
     }
 
     .cta {
       text-align: center;
       margin: 4rem 0;
-      animation: fadeInDown 1s ease forwards;
-      animation-delay: 3.2s;
+      animation-delay: 2.6s;
     }
     .cta button {
       background: #ff4a4a;
@@ -209,41 +173,24 @@
       background: #0f0f1a;
       color: #888;
       font-size: 0.9rem;
-      animation: fadeInDown 1s ease forwards;
-      animation-delay: 3.4s;
+      animation-delay: 2.8s;
     }
 
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .modal-content {
+    #privacy {
+      padding: 4rem 2rem;
       background: #1e1f26;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 600px;
-      color: #fff;
-      text-align: left;
+      animation-delay: 3s;
     }
-    .modal-content h2 {
+    #privacy h2 {
+      font-size: 2rem;
       margin-bottom: 1rem;
       color: #ff4a4a;
     }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
+    #privacy p {
+      font-size: 1rem;
+      color: #ccc;
+      max-width: 800px;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -254,7 +201,7 @@
       <a href="https://discord.gg/MGc75RvX3G" target="_blank">Contact Us</a>
     </div>
     <div class="nav-right">
-      <a href="#" onclick="openModal()">Privacy & Policy</a>
+      <a href="#privacy">Privacy & Policy</a>
       <a href="https://bio.link/gorillalab" target="_blank">Media</a>
     </div>
   </div>
@@ -299,35 +246,26 @@
     &copy; 2025 GalaxyVR Studios. All rights reserved.
   </footer>
 
-  <div class="modal" id="privacyModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Privacy & Policy</h2>
-      <p>We value your privacy. This site does not collect personal data beyond anonymous visit counts. No tracking, no cookies, just gorillas.</p>
-    </div>
-  </div>
+  <section id="privacy">
+    <h2>Privacy & Policy</h2>
+    <p>We respect your privacy and are committed to protecting your personal data. Gorilla Lab collects only essential data required for gameplay and community engagement.</p>
+    <p>Information we collect includes:</p>
+    <ul style="margin-top: 1rem; color: #ccc; padding-left: 2rem;">
+      <li>Your IP address (for analytics and multiplayer security)</li>
+      <li>Your Meta Display Name (used to identify players in multiplayer mode)</li>
+    </ul>
+    <p>We do not collect personal identifying information such as your email, physical address, or payment details. All data is securely stored and never shared with third parties. By playing Gorilla Lab, you consent to this data policy in accordance with platform requirements.</p>
+  </section>
 
   <script>
-    function updateVisitorCount() {
-      fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('visitorCount').textContent = data.count;
-        })
-        .catch(() => {
-          document.getElementById('visitorCount').textContent = 'an unknown number of';
-        });
-    }
-
-    function openModal() {
-      document.getElementById('privacyModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('privacyModal').style.display = 'none';
-    }
-
-    updateVisitorCount();
+    fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitorCount').textContent = data.count;
+      })
+      .catch(() => {
+        document.getElementById('visitorCount').textContent = 'an unknown number of';
+      });
   </script>
 </body>
 </html>
