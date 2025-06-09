@@ -144,14 +144,14 @@
     const namespace = 'gorillalab';
     const key = 'main-page';
 
-    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitorCount').textContent = data.value;
-      })
-      .catch(() => {
-        document.getElementById('visitorCount').textContent = 'an unknown number of';
-      });
+    fetch(`https://counterapi.dev/api/increment/gorillalab/main-page`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('visitorCount').textContent = data.count;
+  })
+  .catch(() => {
+    document.getElementById('visitorCount').textContent = 'an unknown number of';
+  });
   </script>
 </body>
 </html>
