@@ -19,6 +19,10 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     @keyframes fadeInDown {
       0% {
@@ -30,6 +34,47 @@
         transform: translateY(0);
       }
     }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #0f0f1a;
+      animation: fadeInDown 1s ease forwards;
+    }
+    .nav-left,
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav a {
+      position: relative;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+    .nav a:hover::after {
+      width: 100%;
+    }
+    .nav a.active {
+      color: #ff4a4a;
+    }
+    .nav a.active::after {
+      background: #ff4a4a;
+      width: 100%;
+    }
+
     header,
     header h1,
     header p,
@@ -46,28 +91,26 @@
       opacity: 0;
       transform: translateY(-20px);
     }
+
     header {
       background: #0f0f1a;
       padding: 2rem;
       text-align: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 0s;
-      animation-iteration-count: 1;
+      animation-delay: 0.2s;
     }
     header h1 {
       font-size: 3rem;
       color: #ff4a4a;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 0.2s;
-      animation-iteration-count: 1;
+      animation-delay: 0.4s;
     }
     header p {
       font-size: 1.2rem;
       color: #aaa;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 0.4s;
-      animation-iteration-count: 1;
+      animation-delay: 0.6s;
     }
 
     .main-content {
@@ -76,23 +119,20 @@
       gap: 2rem;
       padding: 4rem;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 0.6s;
-      animation-iteration-count: 1;
+      animation-delay: 0.8s;
     }
     .description h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #f0db4f;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 0.8s;
-      animation-iteration-count: 1;
+      animation-delay: 1s;
     }
     .description p {
       font-size: 1rem;
       color: #ddd;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 1s;
-      animation-iteration-count: 1;
+      animation-delay: 1.2s;
     }
     .hero-image {
       display: flex;
@@ -102,23 +142,20 @@
       font-weight: bold;
       color: #57e389;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 1.2s;
-      animation-iteration-count: 1;
+      animation-delay: 1.4s;
     }
 
     .features {
       padding: 2rem 4rem;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 1.4s;
-      animation-iteration-count: 1;
+      animation-delay: 1.6s;
     }
     .features h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #57e389;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 1.6s;
-      animation-iteration-count: 1;
+      animation-delay: 1.8s;
     }
     .features ul {
       list-style-type: square;
@@ -130,13 +167,12 @@
       opacity: 0;
       transform: translateY(-20px);
       animation: fadeInDown 1s ease forwards;
-      animation-iteration-count: 1;
     }
-    .features ul li:nth-child(1) { animation-delay: 1.8s; }
-    .features ul li:nth-child(2) { animation-delay: 2s; }
-    .features ul li:nth-child(3) { animation-delay: 2.2s; }
-    .features ul li:nth-child(4) { animation-delay: 2.4s; }
-    .features ul li:nth-child(5) { animation-delay: 2.6s; }
+    .features ul li:nth-child(1) { animation-delay: 2s; }
+    .features ul li:nth-child(2) { animation-delay: 2.2s; }
+    .features ul li:nth-child(3) { animation-delay: 2.4s; }
+    .features ul li:nth-child(4) { animation-delay: 2.6s; }
+    .features ul li:nth-child(5) { animation-delay: 2.8s; }
 
     .visitor-counter {
       text-align: center;
@@ -144,16 +180,14 @@
       font-size: 1.2rem;
       color: #57e389;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 2.8s;
-      animation-iteration-count: 1;
+      animation-delay: 3s;
     }
 
     .cta {
       text-align: center;
       margin: 4rem 0;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 3s;
-      animation-iteration-count: 1;
+      animation-delay: 3.2s;
     }
     .cta button {
       background: #ff4a4a;
@@ -176,12 +210,55 @@
       color: #888;
       font-size: 0.9rem;
       animation: fadeInDown 1s ease forwards;
-      animation-delay: 3.2s;
-      animation-iteration-count: 1;
+      animation-delay: 3.4s;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #1e1f26;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      color: #fff;
+      text-align: left;
+    }
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      color: #ff4a4a;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <div class="nav">
+    <div class="nav-left">
+      <a href="#" class="active">Home</a>
+      <a href="https://discord.gg/MGc75RvX3G" target="_blank">Contact Us</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" onclick="openModal()">Privacy & Policy</a>
+      <a href="https://bio.link/gorillalab" target="_blank">Media</a>
+    </div>
+  </div>
+
   <header>
     <h1>Gorilla Lab</h1>
     <p>Immersive VR sandbox experience with gorilla-style movement!</p>
@@ -222,6 +299,14 @@
     &copy; 2025 GalaxyVR Studios. All rights reserved.
   </footer>
 
+  <div class="modal" id="privacyModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Privacy & Policy</h2>
+      <p>We value your privacy. This site does not collect personal data beyond anonymous visit counts. No tracking, no cookies, just gorillas.</p>
+    </div>
+  </div>
+
   <script>
     function updateVisitorCount() {
       fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
@@ -232,6 +317,14 @@
         .catch(() => {
           document.getElementById('visitorCount').textContent = 'an unknown number of';
         });
+    }
+
+    function openModal() {
+      document.getElementById('privacyModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('privacyModal').style.display = 'none';
     }
 
     updateVisitorCount();
