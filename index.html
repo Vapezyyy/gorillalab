@@ -18,25 +18,28 @@
       color: #fff;
       line-height: 1.6;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
-
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .nav {
+    .nav, footer {
+      position: fixed;
+      width: 100%;
+      background: #0f0f1a;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: #0f0f1a;
-      animation: fadeInDown 1s ease forwards;
+      z-index: 1000;
+    }
+    .nav {
+      top: 0;
+    }
+    footer {
+      bottom: 0;
+      font-size: 0.9rem;
+      color: #888;
     }
     .nav-left, .nav-right {
       display: flex;
@@ -45,7 +48,6 @@
     .nav a {
       position: relative;
       font-size: 1rem;
-      color: #fff;
       cursor: pointer;
     }
     .nav a::after {
@@ -68,47 +70,36 @@
       background: #ff4a4a;
       width: 100%;
     }
-
-    section, header, footer {
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInDown 1s ease forwards;
+    header, section {
+      padding: 6rem 2rem 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
-
     header {
-      background: #0f0f1a;
-      padding: 2rem;
       text-align: center;
-      animation-delay: 0.2s;
     }
     header h1 {
       font-size: 3rem;
       color: #ff4a4a;
-      animation-delay: 0.4s;
     }
     header p {
       font-size: 1.2rem;
       color: #aaa;
-      animation-delay: 0.6s;
     }
-
     .main-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      padding: 4rem;
-      animation-delay: 0.8s;
+      padding-top: 2rem;
     }
     .description h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #f0db4f;
-      animation-delay: 1s;
     }
     .description p {
       font-size: 1rem;
       color: #ddd;
-      animation-delay: 1.2s;
     }
     .hero-image {
       display: flex;
@@ -117,41 +108,23 @@
       font-size: 2.5rem;
       font-weight: bold;
       color: #57e389;
-      animation-delay: 1.4s;
     }
-
     .features {
-      padding: 2rem 4rem;
-      animation-delay: 1.6s;
+      padding-top: 2rem;
     }
     .features h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #57e389;
-      animation-delay: 1.8s;
     }
     .features ul {
       list-style-type: square;
       padding-left: 1.5rem;
       color: #ccc;
     }
-    .features ul li {
-      margin-bottom: 0.7rem;
-      animation-delay: 2s;
-    }
-
-    .visitor-counter {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.2rem;
-      color: #57e389;
-      animation-delay: 2.4s;
-    }
-
     .cta {
       text-align: center;
       margin: 4rem 0;
-      animation-delay: 2.6s;
     }
     .cta button {
       background: #ff4a4a;
@@ -166,43 +139,22 @@
     .cta button:hover {
       background: #e63e3e;
     }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #0f0f1a;
-      color: #888;
-      font-size: 0.9rem;
-      animation-delay: 2.8s;
-    }
-
-    #privacy {
-      padding: 4rem 2rem;
-      background: #1e1f26;
-      animation-delay: 3s;
-    }
-    #privacy h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #ff4a4a;
-    }
-    #privacy p {
-      font-size: 1rem;
-      color: #ccc;
-      max-width: 800px;
-      margin-top: 1rem;
+    .spacer {
+      height: 80px;
     }
   </style>
 </head>
 <body>
   <div class="nav">
     <div class="nav-left">
-      <a href="#" class="active">Home</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="#">Community</a>
       <a href="https://discord.gg/MGc75RvX3G" target="_blank">Contact Us</a>
     </div>
     <div class="nav-right">
-      <a href="#privacy">Privacy & Policy</a>
+      <a href="privacy.html">Privacy & Policy</a>
       <a href="https://bio.link/gorillalab" target="_blank">Media</a>
+      <a href="developers.html">For Developers</a>
     </div>
   </div>
 
@@ -214,9 +166,7 @@
   <section class="main-content">
     <div class="description">
       <h2>Enter the Lab. Become the Gorilla.</h2>
-      <p>
-        Gorilla Lab is a groundbreaking VR sandbox game where you move like a real gorilla! Climb, swing, and explore with full arm-based locomotion. Experiment, build, and play in a lab designed for chaos and creativity.
-      </p>
+      <p>Gorilla Lab is a groundbreaking VR sandbox game where you move like a real gorilla! Climb, swing, and explore with full arm-based locomotion. Experiment, build, and play in a lab designed for chaos and creativity.</p>
     </div>
     <div class="hero-image">
       <p>Coming Soon...</p>
@@ -234,38 +184,66 @@
     </ul>
   </section>
 
-  <section class="visitor-counter">
-    <p>This page was visited <span id="visitorCount">...</span> times!</p>
-  </section>
-
   <section class="cta">
     <button onclick="alert('Coming soon on Meta Quest and SteamVR!')">Add to Wishlist</button>
   </section>
 
+  <div class="spacer"></div>
+
   <footer>
     &copy; 2025 GalaxyVR Studios. All rights reserved.
   </footer>
+</body>
+</html>
 
-  <section id="privacy">
-    <h2>Privacy & Policy</h2>
-    <p>We respect your privacy and are committed to protecting your personal data. Gorilla Lab collects only essential data required for gameplay and community engagement.</p>
-    <p>Information we collect includes:</p>
-    <ul style="margin-top: 1rem; color: #ccc; padding-left: 2rem;">
-      <li>Your IP address (for analytics and multiplayer security)</li>
-      <li>Your Meta Display Name (used to identify players in multiplayer mode)</li>
-    </ul>
-    <p>We do not collect personal identifying information such as your email, physical address, or payment details. All data is securely stored and never shared with third parties. By playing Gorilla Lab, you consent to this data policy in accordance with platform requirements.</p>
-  </section>
 
-  <script>
-    fetch('https://api.counterapi.dev/v1/gorillalab/main-page/up')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitorCount').textContent = data.count;
-      })
-      .catch(() => {
-        document.getElementById('visitorCount').textContent = 'an unknown number of';
-      });
-  </script>
+<!-- privacy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy & Policy - Gorilla Lab</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e1f26, #34384c);
+      color: #fff;
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      padding: 6rem 2rem 4rem 2rem;
+    }
+    h2 {
+      color: #ff4a4a;
+    }
+    ul {
+      padding-left: 2rem;
+      color: #ccc;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #0f0f1a;
+      text-align: center;
+      padding: 1rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Privacy & Policy</h2>
+  <p>We respect your privacy and are committed to protecting your personal data. Gorilla Lab collects only essential data required for gameplay and community engagement.</p>
+  <p>Information we collect includes:</p>
+  <ul>
+    <li>Your IP address (used for analytics and multiplayer integrity)</li>
+    <li>Your Meta Display Name (used to identify players in multiplayer)</li>
+  </ul>
+  <p>We do not collect personal identifying information such as your email, physical address, or payment details. All data is securely stored and never shared with third parties. By playing Gorilla Lab, you consent to this data policy in accordance with platform requirements.</p>
+  <footer>
+    &copy; 2025 GalaxyVR Studios. All rights reserved.
+  </footer>
 </body>
 </html>
