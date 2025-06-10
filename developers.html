@@ -1,38 +1,114 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gorilla Lab for Developers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Developers - Gorilla Lab</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Rubik', sans-serif;
+    }
     body {
       background: linear-gradient(135deg, #1e1f26, #34384c);
       color: #fff;
-      font-family: 'Rubik', sans-serif;
-      margin: 0;
-      padding: 6rem 2rem 4rem 2rem;
+      line-height: 1.6;
+      padding: 6rem 2rem 4rem;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #ff4a4a;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #ff4a4a;
+      margin-bottom: 0.5rem;
+    }
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #0f0f1a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff4a4a44;
     }
     h2 {
-      color: #57e389;
+      color: #ff4a4a;
+      margin-bottom: 1rem;
+      font-size: 2rem;
     }
-    footer {
+    p {
+      color: #ccc;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    nav {
       position: fixed;
-      bottom: 0;
-      width: 100%;
+      top: 0; left: 0; right: 0;
       background: #0f0f1a;
-      text-align: center;
-      padding: 1rem;
-      color: #888;
-      font-size: 0.9rem;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px #00000088;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav a.active {
+      color: #ff4a4a;
     }
   </style>
 </head>
 <body>
-  <h2>Gorilla Lab for Developers</h2>
-  <p>Gorilla Lab provides intuitive and powerful tools for VR developers who are just getting started. Our SDK includes examples of locomotion, interactive physics, and networking optimized for Meta Quest devices. Whether you're building mods or new game modes, Gorilla Lab offers a fun and moddable playground for VR innovation.</p>
-  <footer>
-    &copy; 2025 GalaxyVR Studios. All rights reserved.
-  </footer>
+  <nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="community.html">Community</a>
+    </div>
+    <div>
+      <a href="privacy.html">Privacy & Policy</a>
+      <a href="developers.html" class="active">For Developers</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>For Developers</h1>
+  </header>
+
+  <section>
+    <p>Gorilla Lab supports modding and user-generated content. If you're a developer or creator, here’s how you can get involved:</p>
+
+    <h2>Development Resources:</h2>
+    <ul>
+      <li><a href="https://github.com/cos.cos" target="_blank" rel="noopener noreferrer">GitHub Repository</a> — Access source code examples and modding SDKs.</li>
+      <li><a href="https://docs.cos.cos" target="_blank" rel="noopener noreferrer">Developer Documentation</a> — Tutorials, API references, and best practices.</li>
+      <li><a href="https://discord.com/invite/MGc75RvX3G">Contact Developer Support</a> — Get help or submit proposals.</li>
+    </ul>
+
+    <p>We welcome your creativity and look forward to seeing what you build!</p>
+  </section>
 </body>
 </html>
